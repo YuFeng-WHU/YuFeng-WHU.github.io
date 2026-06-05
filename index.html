@@ -1,33 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>Yufeng Deng</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Yufeng Deng | Academic Homepage</title>
 
   <style>
+    :root {
+      --bg: #f7f7f5;
+      --card: #ffffff;
+      --text: #1f2933;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #1f4e79;
+      --accent-light: #eef4f8;
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      max-width: 880px;
-      margin: 60px auto;
-      padding: 0 24px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      line-height: 1.7;
-      color: #222;
-    }
-
-    h1 {
-      font-size: 2.4rem;
-      margin-bottom: 0.2em;
-    }
-
-    h2 {
-      margin-top: 2em;
-      padding-bottom: 0.3em;
-      border-bottom: 1px solid #ddd;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        "PingFang SC",
+        "Microsoft YaHei",
+        sans-serif;
+      line-height: 1.75;
     }
 
     a {
-      color: #0969da;
+      color: var(--accent);
       text-decoration: none;
     }
 
@@ -35,84 +52,600 @@
       text-decoration: underline;
     }
 
-    .subtitle {
-      color: #555;
-      font-size: 1.1rem;
-      margin-bottom: 1.5em;
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 36px 24px 80px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 34px;
+    }
+
+    .brand {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    nav a {
+      color: var(--muted);
+    }
+
+    .lang-switch {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 4px;
+      display: flex;
+      gap: 4px;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+    }
+
+    .lang-switch button {
+      border: none;
+      background: transparent;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .lang-switch button.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 270px 1fr;
+      gap: 38px;
+      align-items: center;
+      background: var(--card);
+      padding: 38px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+
+    .photo-wrap {
+      display: flex;
+      justify-content: center;
+    }
+
+    .photo {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 50%;
+      border: 6px solid #f3f4f6;
+      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.14);
+      background: #fff;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 42px;
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+    }
+
+    .hero .subtitle {
+      margin-top: 12px;
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .hero .bio {
+      margin-top: 20px;
+      color: #374151;
+      font-size: 16px;
+    }
+
+    .tags {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     .tag {
-      display: inline-block;
-      background: #f1f5f9;
-      padding: 4px 9px;
-      margin: 4px 4px 4px 0;
-      border-radius: 6px;
-      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 6px 11px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .contact-row {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .contact-row a,
+    .contact-row span {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    section {
+      background: var(--card);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+    }
+
+    section.full {
+      grid-column: 1 / -1;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 23px;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      margin: 22px 0 8px;
+      font-size: 17px;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .item {
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .item:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .item-title {
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .item-meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    .paper-list {
+      counter-reset: paper;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .paper-list li {
+      position: relative;
+      padding-left: 34px;
+      margin-bottom: 18px;
+    }
+
+    .paper-list li::before {
+      counter-increment: paper;
+      content: counter(paper);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 28px;
+    }
+
+    [data-lang] {
+      display: none;
+    }
+
+    body.lang-zh [data-lang="zh"] {
+      display: block;
+    }
+
+    body.lang-en [data-lang="en"] {
+      display: block;
+    }
+
+    body.lang-zh span[data-lang="zh"],
+    body.lang-en span[data-lang="en"] {
+      display: inline;
+    }
+
+    @media (max-width: 820px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 30px 24px;
+        text-align: left;
+      }
+
+      .photo {
+        width: 190px;
+        height: 190px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      section.full {
+        grid-column: auto;
+      }
     }
   </style>
 </head>
 
-<body>
-  <h1>Yufeng Deng</h1>
+<body class="lang-zh">
+  <div class="page">
 
-  <p class="subtitle">
-    Ph.D. Student in Software Engineering, Wuhan University
-  </p>
+    <header>
+      <div class="brand">Yufeng Deng</div>
 
-  <p>
-    I am a Ph.D. student in Software Engineering at Wuhan University.
-    My research interests include Software Engineering, Large Language Models for Software Engineering,
-    AI-assisted software development, software testing, and empirical software engineering.
-  </p>
+      <nav>
+        <a href="#about">
+          <span data-lang="zh">关于我</span>
+          <span data-lang="en">About</span>
+        </a>
+        <a href="#research">
+          <span data-lang="zh">研究方向</span>
+          <span data-lang="en">Research</span>
+        </a>
+        <a href="#publications">
+          <span data-lang="zh">论文成果</span>
+          <span data-lang="en">Publications</span>
+        </a>
+        <a href="#honors">
+          <span data-lang="zh">荣誉奖项</span>
+          <span data-lang="en">Honors</span>
+        </a>
 
-  <h2>Research Interests</h2>
-  <p>
-    <span class="tag">Software Engineering</span>
-    <span class="tag">LLM4SE</span>
-    <span class="tag">AI-assisted Coding</span>
-    <span class="tag">Software Testing</span>
-    <span class="tag">Empirical Software Engineering</span>
-    <span class="tag">Research Software Engineering</span>
-  </p>
+        <div class="lang-switch">
+          <button id="btn-zh" class="active" onclick="setLang('zh')">中文</button>
+          <button id="btn-en" onclick="setLang('en')">EN</button>
+        </div>
+      </nav>
+    </header>
 
-  <h2>Projects</h2>
-  <ul>
-    <li>
-      <strong>LLM4SE Reading Notes</strong> —
-      Notes on papers about large language models for software engineering.
-    </li>
-    <li>
-      <strong>AI-assisted Code Review Demo</strong> —
-      A prototype for using large language models to generate code review comments.
-    </li>
-    <li>
-      <strong>Software Testing Experiments</strong> —
-      Reproduction and analysis of software testing research papers.
-    </li>
-  </ul>
+    <main>
+      <section class="hero" id="about">
+        <div class="photo-wrap">
+          <img class="photo" src="photo.jpg" alt="Yufeng Deng" />
+        </div>
 
-  <h2>Publications</h2>
-  <p>
-    Coming soon.
-  </p>
+        <div>
+          <h1>Yufeng Deng</h1>
 
-  <h2>Education</h2>
-  <ul>
-    <li>
-      Ph.D. Student in Software Engineering, Wuhan University
-    </li>
-    <li>
-      M.S. in Information Management
-    </li>
-    <li>
-      B.S. in E-Commerce
-    </li>
-  </ul>
+          <div class="subtitle">
+            <span data-lang="zh">武汉大学软件工程博士生</span>
+            <span data-lang="en">Ph.D. Student in Software Engineering, Wuhan University</span>
+          </div>
 
-  <h2>Contact</h2>
-  <ul>
-    <li>Email: 907528468@qq.com</li>
-    <li>GitHub: <a href="https://github.com/YuFeng-WHU">github.com/YuFeng-WHU</a></li>
-  </ul>
+          <p class="bio" data-lang="zh">
+            我目前为武汉大学计算机学院软件工程专业博士研究生，师从谢晓园教授。
+            此前，我于武汉大学信息管理学院攻读信息资源管理硕士学位，师从马费成教授。
+            我的研究兴趣主要集中于 AI4SE、SE4AI、大语言模型辅助软件工程、智能化软件开发与实证软件工程。
+          </p>
+
+          <p class="bio" data-lang="en">
+            I am currently a Ph.D. student in Software Engineering at the School of Computer Science,
+            Wuhan University, advised by Prof. Xiaoyuan Xie.
+            I received my master's training in Information Resource Management from the School of Information Management,
+            Wuhan University, advised by Prof. Feicheng Ma.
+            My research interests include AI4SE, SE4AI, LLM-assisted software engineering,
+            intelligent software development, and empirical software engineering.
+          </p>
+
+          <div class="tags">
+            <span class="tag">AI4SE</span>
+            <span class="tag">SE4AI</span>
+            <span class="tag">LLM4SE</span>
+            <span class="tag">Software Engineering</span>
+            <span class="tag">Empirical Research</span>
+          </div>
+
+          <div class="contact-row">
+            <span>Email: 907528468@qq.com</span>
+            <a href="https://github.com/YuFeng-WHU" target="_blank">GitHub</a>
+          </div>
+        </div>
+      </section>
+
+      <div class="grid">
+        <section id="education">
+          <h2>
+            <span data-lang="zh">教育经历</span>
+            <span data-lang="en">Education</span>
+          </h2>
+
+          <div class="item">
+            <div class="item-title">
+              <span data-lang="zh">武汉大学，博士研究生</span>
+              <span data-lang="en">Wuhan University, Ph.D. Student</span>
+            </div>
+            <div class="item-meta">
+              <span data-lang="zh">计算机学院，软件工程专业；导师：谢晓园教授</span>
+              <span data-lang="en">School of Computer Science, Software Engineering; Advisor: Prof. Xiaoyuan Xie</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item-title">
+              <span data-lang="zh">武汉大学，硕士研究生</span>
+              <span data-lang="en">Wuhan University, Master's Student</span>
+            </div>
+            <div class="item-meta">
+              <span data-lang="zh">信息管理学院，信息资源管理专业；导师：马费成教授</span>
+              <span data-lang="en">School of Information Management, Information Resource Management; Advisor: Prof. Feicheng Ma</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="research">
+          <h2>
+            <span data-lang="zh">研究方向</span>
+            <span data-lang="en">Research Interests</span>
+          </h2>
+
+          <ul data-lang="zh">
+            <li>AI for Software Engineering，AI4SE</li>
+            <li>Software Engineering for AI，SE4AI</li>
+            <li>大语言模型辅助软件开发与软件测试</li>
+            <li>智能化代码理解、代码生成与代码评审</li>
+            <li>实证软件工程与软件仓库挖掘</li>
+          </ul>
+
+          <ul data-lang="en">
+            <li>AI for Software Engineering, AI4SE</li>
+            <li>Software Engineering for AI, SE4AI</li>
+            <li>LLM-assisted software development and software testing</li>
+            <li>Intelligent code understanding, generation, and review</li>
+            <li>Empirical software engineering and mining software repositories</li>
+          </ul>
+        </section>
+      </div>
+
+      <section class="full" id="projects">
+        <h2>
+          <span data-lang="zh">科研项目</span>
+          <span data-lang="en">Research Projects</span>
+        </h2>
+
+        <div data-lang="zh">
+          <div class="item">
+            <div class="item-title">
+              国家自然科学基金项目：隐私政策视角下企业数据合规与风险管理研究
+            </div>
+            <div class="item-meta">项目编号：72474101</div>
+          </div>
+
+          <div class="item">
+            <div class="item-title">
+              国家自然科学基金项目：社交知识大图驱动的股市信息扩散与风险传染共演化机制
+            </div>
+            <div class="item-meta">项目编号：723B2018</div>
+          </div>
+        </div>
+
+        <div data-lang="en">
+          <div class="item">
+            <div class="item-title">
+              National Natural Science Foundation of China:
+              Enterprise Data Compliance and Risk Management from the Perspective of Privacy Policies
+            </div>
+            <div class="item-meta">Grant No. 72474101</div>
+          </div>
+
+          <div class="item">
+            <div class="item-title">
+              National Natural Science Foundation of China:
+              Co-evolution Mechanism of Stock Market Information Diffusion and Risk Contagion Driven by Social Knowledge Graphs
+            </div>
+            <div class="item-meta">Grant No. 723B2018</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="full" id="publications">
+        <h2>
+          <span data-lang="zh">学术论文</span>
+          <span data-lang="en">Publications</span>
+        </h2>
+
+        <ol class="paper-list" data-lang="zh">
+          <li>
+            <strong>Measuring policy diffusion intensity: A text-driven analysis of government documents</strong>.
+            <em>Information Processing & Management</em>, 63(2): 104383.
+            DOI: 10.1016/j.ipm.2025.104383.
+          </li>
+
+          <li>
+            <strong>面向价值释放的数据要素流通产品形态更迭体系及保障机制</strong>.
+            <em>情报理论与实践</em>, 2025, 48(10): 53-62.
+            DOI: 10.16353/j.cnki.1000-7490.2025.10.007.
+          </li>
+
+          <li>
+            <strong>社交知识大图的计算推理方法与应用展望</strong>.
+            <em>情报学报</em>, 2025, 44(11): 1422-1443.
+          </li>
+
+          <li>
+            <strong>面向数据要素流通的“五位一体”全链路分层存储治理体系及协同保障机制</strong>.
+            <em>情报科学</em>, CSSCI.
+          </li>
+
+          <li>
+            <strong>四方主体演化博弈下可信数据空间隐私治理策略交互及演化趋势研究</strong>.
+            情报学年会收录论文.
+          </li>
+        </ol>
+
+        <ol class="paper-list" data-lang="en">
+          <li>
+            <strong>Measuring policy diffusion intensity: A text-driven analysis of government documents</strong>.
+            <em>Information Processing & Management</em>, 63(2): 104383.
+            DOI: 10.1016/j.ipm.2025.104383.
+          </li>
+
+          <li>
+            <strong>A Product Form Evolution System and Safeguard Mechanism for Data Element Circulation Toward Value Release</strong>.
+            <em>Information Studies: Theory & Application</em>, 2025, 48(10): 53-62.
+            DOI: 10.16353/j.cnki.1000-7490.2025.10.007.
+          </li>
+
+          <li>
+            <strong>Computational Reasoning Methods and Application Prospects of Social Knowledge Mega-Graphs</strong>.
+            <em>Journal of the China Society for Scientific and Technical Information</em>, 2025, 44(11): 1422-1443.
+          </li>
+
+          <li>
+            <strong>A Five-in-One Full-Chain Hierarchical Storage Governance System and Collaborative Safeguard Mechanism for Data Element Circulation</strong>.
+            <em>Information Science</em>, CSSCI.
+          </li>
+
+          <li>
+            <strong>Privacy Governance Strategy Interaction and Evolutionary Trends in Trusted Data Spaces under a Four-Party Evolutionary Game</strong>.
+            Accepted by an information science annual conference.
+          </li>
+        </ol>
+      </section>
+
+      <div class="grid">
+        <section id="ip">
+          <h2>
+            <span data-lang="zh">专利 / 软著</span>
+            <span data-lang="en">Patent / Software Copyright</span>
+          </h2>
+
+          <p data-lang="zh">
+            面向金融风险知识流动的社交知识大图构建方法及系统。
+          </p>
+
+          <p data-lang="en">
+            A method and system for constructing social knowledge mega-graphs for financial risk knowledge flow.
+          </p>
+        </section>
+
+        <section id="honors">
+          <h2>
+            <span data-lang="zh">荣誉奖项</span>
+            <span data-lang="en">Honors & Awards</span>
+          </h2>
+
+          <ul data-lang="zh">
+            <li>第二十届中国研究生电子设计竞赛省级一等奖，队长</li>
+            <li>第八届中国研究生创“芯”大赛省级二等奖，队长</li>
+            <li>第七届中国研究生人工智能创新大赛国家级三等奖，队长</li>
+            <li>武汉大学优秀研究生</li>
+            <li>武汉大学优秀学业奖学金一等奖</li>
+            <li>武汉大学优秀毕业生</li>
+          </ul>
+
+          <ul data-lang="en">
+            <li>Provincial First Prize, 20th China Graduate Electronic Design Contest, Team Leader</li>
+            <li>Provincial Second Prize, 8th China Graduate IC Innovation Competition, Team Leader</li>
+            <li>National Third Prize, 7th China Graduate AI Innovation Competition, Team Leader</li>
+            <li>Outstanding Graduate Student, Wuhan University</li>
+            <li>First-Class Academic Scholarship, Wuhan University</li>
+            <li>Outstanding Graduate, Wuhan University</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <div class="footer">
+      © 2026 Yufeng Deng. Built with GitHub Pages.
+    </div>
+  </div>
+
+  <script>
+    function setLang(lang) {
+      document.body.className = lang === 'zh' ? 'lang-zh' : 'lang-en';
+
+      document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+      localStorage.setItem('preferred-lang', lang);
+    }
+
+    const savedLang = localStorage.getItem('preferred-lang');
+    if (savedLang === 'en') {
+      setLang('en');
+    } else {
+      setLang('zh');
+    }
+  </script>
 </body>
 </html>
