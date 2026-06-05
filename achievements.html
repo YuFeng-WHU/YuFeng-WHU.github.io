@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Yufeng Deng | Achievements</title>
+
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: rgba(255, 255, 255, 0.86);
+      --text: #172033;
+      --muted: #6b7280;
+      --line: rgba(148, 163, 184, 0.28);
+      --accent: #163b73;
+      --accent-2: #2563eb;
+      --accent-light: rgba(37, 99, 235, 0.08);
+      --shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
+      --radius: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 8% 12%, rgba(37, 99, 235, 0.16), transparent 28%),
+        radial-gradient(circle at 88% 18%, rgba(14, 165, 233, 0.16), transparent 26%),
+        linear-gradient(135deg, #f8fafc 0%, #eef4fb 46%, #f8fafc 100%);
+      color: var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Helvetica Neue",
+        Arial,
+        "PingFang SC",
+        "Microsoft YaHei",
+        sans-serif;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(22, 59, 115, 0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(22, 59, 115, 0.045) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.65), rgba(0,0,0,0.12));
+      z-index: -3;
+    }
+
+    #particle-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+      opacity: 0.58;
+    }
+
+    .glow {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      filter: blur(48px);
+      opacity: 0.22;
+      z-index: -1;
+      pointer-events: none;
+      animation: floatGlow 11s ease-in-out infinite alternate;
+    }
+
+    .glow.left {
+      left: -120px;
+      top: 230px;
+      background: #3b82f6;
+    }
+
+    .glow.right {
+      right: -140px;
+      bottom: 120px;
+      background: #0ea5e9;
+      animation-delay: 2s;
+    }
+
+    @keyframes floatGlow {
+      from {
+        transform: translateY(0) scale(1);
+      }
+      to {
+        transform: translateY(-35px) scale(1.08);
+      }
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 34px 24px 80px;
+      position: relative;
+    }
+
+    header {
+      position: sticky;
+      top: 18px;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 34px;
+      padding: 12px 16px;
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.76);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 17px;
+      font-weight: 750;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+
+    .whu-logo-small {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    nav a {
+      color: var(--muted);
+    }
+
+    .lang-switch {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 4px;
+      display: flex;
+      gap: 4px;
+    }
+
+    .lang-switch button {
+      border: none;
+      background: transparent;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .lang-switch button.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #fff;
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: 285px 1fr;
+      gap: 42px;
+      align-items: center;
+      background: var(--card);
+      padding: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .hero:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 30px 90px rgba(15, 23, 42, 0.16);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -100px;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(37, 99, 235, 0.18), transparent 65%);
+      pointer-events: none;
+    }
+
+    .photo-wrap {
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .photo-wrap::before {
+      content: "";
+      position: absolute;
+      width: 235px;
+      height: 235px;
+      border-radius: 50%;
+      border: 1px solid rgba(37, 99, 235, 0.24);
+      animation: pulseRing 3.4s ease-in-out infinite;
+    }
+
+    @keyframes pulseRing {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.65;
+      }
+      50% {
+        transform: scale(1.08);
+        opacity: 0.2;
+      }
+    }
+
+    .photo {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      object-position: center top;
+      border-radius: 50%;
+      border: 6px solid #ffffff;
+      box-shadow: 0 20px 42px rgba(15, 23, 42, 0.18);
+      background: #fff;
+      z-index: 1;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 44px;
+      line-height: 1.16;
+      letter-spacing: -0.04em;
+    }
+
+    .hero .subtitle {
+      margin-top: 12px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .hero .bio {
+      margin-top: 20px;
+      color: #374151;
+      font-size: 16px;
+      max-width: 720px;
+    }
+
+    .tags {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(14, 165, 233, 0.08));
+      color: var(--accent);
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid rgba(37, 99, 235, 0.12);
+    }
+
+    .contact-row {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .contact-row a,
+    .contact-row span {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 999px;
+      padding: 7px 13px;
+      font-size: 14px;
+      color: #374151;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    section {
+      background: var(--card);
+      padding: 31px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(18px);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    section:hover {
+      transform: translateY(-3px);
+      border-color: rgba(37, 99, 235, 0.18);
+      box-shadow: 0 26px 76px rgba(15, 23, 42, 0.14);
+    }
+
+    section.full {
+      grid-column: 1 / -1;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 23px;
+      letter-spacing: -0.03em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2::before {
+      content: "";
+      width: 8px;
+      height: 22px;
+      border-radius: 99px;
+      background: linear-gradient(180deg, var(--accent), var(--accent-2));
+      box-shadow: 0 8px 18px rgba(37, 99, 235, 0.24);
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .item {
+      padding: 16px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .item:first-child {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .item-title {
+      font-weight: 750;
+      color: #111827;
+    }
+
+    .item-meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    .paper-list {
+      counter-reset: paper;
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .paper-list li {
+      position: relative;
+      padding-left: 38px;
+      margin-bottom: 18px;
+    }
+
+    .paper-list li::before {
+      counter-increment: paper;
+      content: counter(paper);
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(14, 165, 233, 0.12));
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 28px;
+    }
+
+    [data-lang] {
+      display: none;
+    }
+
+    body.lang-zh [data-lang="zh"] {
+      display: block;
+    }
+
+    body.lang-en [data-lang="en"] {
+      display: block;
+    }
+
+    body.lang-zh span[data-lang="zh"],
+    body.lang-en span[data-lang="en"] {
+      display: inline;
+    }
+
+    @media (max-width: 860px) {
+      header {
+        position: static;
+        border-radius: 24px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+      }
+
+      .photo {
+        width: 190px;
+        height: 190px;
+      }
+
+      .photo-wrap::before {
+        width: 205px;
+        height: 205px;
+      }
+
+      .hero h1 {
+        font-size: 35px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      section.full {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+
+<body class="lang-zh">
+  <canvas id="particle-canvas"></canvas>
+  <div class="glow left"></div>
+  <div class="glow right"></div>
+
+  <div class="page">
+
+    <header>
+      <div class="brand">
+        <img class="whu-logo-small" src="whu-logo.jpeg" alt="Wuhan University Logo" onerror="this.style.display='none'" />
+        <span data-lang="zh">邓雨枫</span>
+        <span data-lang="en">Yufeng Deng</span>
+      </div>
+
+      <nav>
+        <a href="index.html#about">
+          <span data-lang="zh">关于我</span>
+          <span data-lang="en">About</span>
+        </a>
+        <a href="achievements.html">
+          <span data-lang="zh">成果清单</span>
+          <span data-lang="en">Achievements</span>
+        </a>
+        <div class="lang-switch">
+          <button id="btn-zh" class="active" onclick="setLang('zh')">中文</button>
+          <button id="btn-en" onclick="setLang('en')">EN</button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="full" id="achievements">
+        <h2>
+          <span data-lang="zh">成果清单</span>
+          <span data-lang="en">Achievements</span>
+        </h2>
+        <p data-lang="zh">本页用于集中展示全部科研项目、论文、专利 / 软著与荣誉奖项。</p>
+        <p data-lang="en">This page presents a consolidated list of research projects, publications, patent / software copyright, and honors & awards.</p>
+      </section>
+
+      <section class="full" id="projects">
+        <h2>
+          <span data-lang="zh">科研项目</span>
+          <span data-lang="en">Research Projects</span>
+        </h2>
+
+        <div data-lang="zh">
+          <div class="item">
+            <div class="item-title">
+              国家自然科学基金项目：隐私政策视角下企业数据合规与风险管理研究
+            </div>
+            <div class="item-meta">项目编号：72474101</div>
+          </div>
+
+          <div class="item">
+            <div class="item-title">
+              国家自然科学基金项目：社交知识大图驱动的股市信息扩散与风险传染共演化机制
+            </div>
+            <div class="item-meta">项目编号：723B2018</div>
+          </div>
+        </div>
+
+        <div data-lang="en">
+          <div class="item">
+            <div class="item-title">
+              National Natural Science Foundation of China:
+              Enterprise Data Compliance and Risk Management from the Perspective of Privacy Policies
+            </div>
+            <div class="item-meta">Grant No. 72474101</div>
+          </div>
+
+          <div class="item">
+            <div class="item-title">
+              National Natural Science Foundation of China:
+              Co-evolution Mechanism of Stock Market Information Diffusion and Risk Contagion Driven by Social Knowledge Graphs
+            </div>
+            <div class="item-meta">Grant No. 723B2018</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="full" id="publications">
+        <h2>
+          <span data-lang="zh">论文成果</span>
+          <span data-lang="en">Publications</span>
+        </h2>
+
+        <ol class="paper-list" data-lang="zh">
+          <li>
+            <strong>Measuring policy diffusion intensity: A text-driven analysis of government documents</strong>.
+            <em>Information Processing & Management</em>, 63(2): 104383.
+            DOI: 10.1016/j.ipm.2025.104383.
+          </li>
+
+          <li>
+            <strong>面向价值释放的数据要素流通产品形态更迭体系及保障机制</strong>.
+            <em>情报理论与实践</em>, 2025, 48(10): 53-62.
+            DOI: 10.16353/j.cnki.1000-7490.2025.10.007.
+          </li>
+
+          <li>
+            <strong>社交知识大图的计算推理方法与应用展望</strong>.
+            <em>情报学报</em>, 2025, 44(11): 1422-1443.
+          </li>
+
+          <li>
+            <strong>面向数据要素流通的“五位一体”全链路分层存储治理体系及协同保障机制</strong>.
+            <em>情报科学</em>, CSSCI.
+          </li>
+
+          <li>
+            <strong>四方主体演化博弈下可信数据空间隐私治理策略交互及演化趋势研究</strong>.
+            <em>情报学年会收录论文</em>
+          </li>
+        </ol>
+
+        <ol class="paper-list" data-lang="en">
+          <li>
+            <strong>Measuring policy diffusion intensity: A text-driven analysis of government documents</strong>.
+            <em>Information Processing & Management</em>, 63(2): 104383.
+            DOI: 10.1016/j.ipm.2025.104383.
+          </li>
+
+          <li>
+            <strong>A Product Form Evolution System and Safeguard Mechanism for Data Element Circulation Toward Value Release</strong>.
+            <em>Information Studies: Theory & Application</em>, 2025, 48(10): 53-62.
+            DOI: 10.16353/j.cnki.1000-7490.2025.10.007.
+          </li>
+
+          <li>
+            <strong>Computational Reasoning Methods and Application Prospects of Social Knowledge Mega-Graphs</strong>.
+            <em>Journal of the China Society for Scientific and Technical Information</em>, 2025, 44(11): 1422-1443.
+          </li>
+
+          <li>
+            <strong>A Five-in-One Full-Chain Hierarchical Storage Governance System and Collaborative Safeguard Mechanism for Data Element Circulation</strong>.
+            <em>Information Science</em>, CSSCI.
+          </li>
+
+          <li>
+            <strong>Privacy Governance Strategy Interaction and Evolutionary Trends in Trusted Data Spaces under a Four-Party Evolutionary Game</strong>.
+            Accepted by an information science annual conference.
+          </li>
+        </ol>
+      </section>
+
+      <div class="grid">
+        <section id="ip">
+          <h2>
+            <span data-lang="zh">专利 / 软著</span>
+            <span data-lang="en">Patent / Software Copyright</span>
+          </h2>
+
+          <p data-lang="zh">
+            面向金融风险知识流动的社交知识大图构建方法及系统
+          </p>
+
+          <p data-lang="en">
+            A method and system for constructing social knowledge mega-graphs for financial risk knowledge flow.
+          </p>
+        </section>
+
+        <section id="honors">
+          <h2>
+            <span data-lang="zh">荣誉奖项</span>
+            <span data-lang="en">Honors & Awards</span>
+          </h2>
+
+          <ul data-lang="zh">
+            <li>第二十届中国研究生电子设计竞赛省级一等奖，队长</li>
+            <li>第八届中国研究生创“芯”大赛省级二等奖，队长</li>
+            <li>第七届中国研究生人工智能创新大赛国家级三等奖，队长</li>
+            <li>武汉大学优秀研究生</li>
+            <li>武汉大学优秀学业奖学金一等奖</li>
+            <li>武汉大学优秀毕业生</li>
+          </ul>
+
+          <ul data-lang="en">
+            <li>Provincial First Prize, 20th China Graduate Electronic Design Contest, Team Leader</li>
+            <li>Provincial Second Prize, 8th China Graduate IC Innovation Competition, Team Leader</li>
+            <li>National Third Prize, 7th China Graduate AI Innovation Competition, Team Leader</li>
+            <li>Outstanding Graduate Student, Wuhan University</li>
+            <li>First-Class Academic Scholarship, Wuhan University</li>
+            <li>Outstanding Graduate, Wuhan University</li>
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <div class="footer">
+      © 2026 Yufeng Deng. Built with GitHub Pages.
+    </div>
+  </div>
+
+  <script>
+    function setLang(lang) {
+      document.body.className = lang === 'zh' ? 'lang-zh' : 'lang-en';
+
+      document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+      localStorage.setItem('preferred-lang', lang);
+    }
+
+    const savedLang = localStorage.getItem('preferred-lang');
+    if (savedLang === 'en') {
+      setLang('en');
+    } else {
+      setLang('zh');
+    }
+
+    const canvas = document.getElementById("particle-canvas");
+    const ctx = canvas.getContext("2d");
+
+    let particles = [];
+    let mouse = {
+      x: null,
+      y: null
+    };
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
+    }
+
+    function initParticles() {
+      const count = Math.min(90, Math.floor(window.innerWidth / 18));
+      particles = [];
+
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          r: Math.random() * 1.8 + 0.6
+        });
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(37, 99, 235, 0.34)";
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const q = particles[j];
+          const dx = p.x - q.x;
+          const dy = p.y - q.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 130) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(q.x, q.y);
+            ctx.strokeStyle = `rgba(37, 99, 235, ${0.11 * (1 - dist / 130)})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+
+        if (mouse.x !== null && mouse.y !== null) {
+          const dx = p.x - mouse.x;
+          const dy = p.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 155) {
+            ctx.beginPath();
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(22, 59, 115, ${0.18 * (1 - dist / 155)})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(drawParticles);
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+
+    window.addEventListener("mousemove", function(e) {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    window.addEventListener("mouseleave", function() {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    resizeCanvas();
+    drawParticles();
+  </script>
+</body>
+</html>
